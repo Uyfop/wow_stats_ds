@@ -10,6 +10,9 @@ class Item {
   final int hasteRating;
   final int hitRating;
   final int mastery;
+  final int expertiseRating;
+  final int strength;
+  final int agility;
   final String imageUrl;
 
 
@@ -24,6 +27,9 @@ class Item {
     required this.hitRating,
     required this.mastery, 
     required this.imageUrl,
+    required this.expertiseRating,
+    required this.strength,
+    required this.agility,
   });
 
   Map<String, dynamic> toJson() {
@@ -38,6 +44,9 @@ class Item {
       'hitRating': hitRating,
       'mastery': mastery,
       'imageUrl': imageUrl,
+      'expertiseRating': expertiseRating,
+      'strength': strength,
+      'agility': agility,
     };
   }
 
@@ -53,6 +62,9 @@ class Item {
     hitRating: json['hitRating'] ?? 0,
     mastery: json['mastery'] ?? 0,
     imageUrl: json['imageUrl'] ?? 'assets/item_img/empty_slot.jpg',
+    expertiseRating: json['expertiseRating'] ?? 0,
+    strength: json['strength'] ?? 0,
+    agility: json['agility'] ?? 0,
   );
 }
 
@@ -67,7 +79,10 @@ class Item {
       hasteRating: 0,
       hitRating: 0,
       mastery: 0,
-      imageUrl: '',
+      imageUrl: 'assets/item_img/empty_slot.jpg',
+      expertiseRating: 0,
+      strength: 0,
+      agility: 0,
     );
   }
 }

@@ -1,4 +1,6 @@
+import 'package:wow_stats_ds/models/character.dart';
 import 'package:wow_stats_ds/models/enums/class_enum.dart';
+import 'package:wow_stats_ds/models/item.dart';
 import 'package:wow_stats_ds/models/simulation/classes/deathknight_sim.dart';
 import 'package:wow_stats_ds/models/simulation/classes/druid_sim.dart';
 import 'package:wow_stats_ds/models/simulation/classes/hunter_sim.dart';
@@ -12,9 +14,14 @@ import 'package:wow_stats_ds/models/simulation/classes/warrior_sim.dart';
 import 'package:wow_stats_ds/models/simulation/simulation.dart';
 
 class SimulationEngine {
-  static Future<double> runSimulation(CharacterClass characterClass) {
+  static Future<double> runSimulation(Character character) {
+    SimulationData simulationData = _getSimulationDataForClass(character.classType);
+    return simulationData.runSimulation(character);
+  }
+
+  static Map<String, int> calculateDPSIncrease(List<Item> items, Item currentItem, CharacterClass characterClass) {
     SimulationData simulationData = _getSimulationDataForClass(characterClass);
-    return simulationData.runSimulation();
+    return simulationData.calculateDPSIncrease(items, currentItem);
   }
 
   static SimulationData _getSimulationDataForClass(CharacterClass characterClass) {

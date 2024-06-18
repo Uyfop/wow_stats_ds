@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:wow_stats_ds/models/enums/item_type_enum.dart';
 import 'package:wow_stats_ds/models/extensions/colors.dart';
 import 'package:wow_stats_ds/models/extensions/string_extension.dart';
@@ -25,6 +26,9 @@ class _AddItemPageState extends State<AddItemPage> {
     'hasteRating': TextEditingController(),
     'hitRating': TextEditingController(),
     'mastery': TextEditingController(),
+    'expertiseRating': TextEditingController(),
+    'strength': TextEditingController(),
+    'agility': TextEditingController(),
   };
 
   final ItemService itemService = ItemService();
@@ -42,43 +46,64 @@ class _AddItemPageState extends State<AddItemPage> {
     return Scaffold(
       backgroundColor: siteBackgroundColor,
       appBar: const CustomAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ..._controllers.entries.map((entry) {
-              return TextField(
-                controller: entry.value,
-                decoration: InputDecoration(
-                  labelText: entry.key.capitalize(),
-                  labelStyle: charaTextStyle()
-                ),
-                keyboardType: entry.key == 'name' ? TextInputType.text : TextInputType.number, style: charaTextStyle(),
-              );
-            }),
-            const SizedBox(height: 16.0),
-            ItemTypeDropdown(
-              selectedItemType: _selectedItemType,
-              onChanged: (ItemType? newValue) {
-                setState(() {
-                  _selectedItemType = newValue!;
-                });
-              },
-            ),
-            const SizedBox(height: 16.0),
-            ElevatedButton(
-              style: charaButtonStyle(),
-              onPressed: addItem,
-              child: const Text('Add Item'),
-            ),
-          ],
+      body: SingleChildScrollView( 
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ..._controllers.entries.map((entry) {
+                return TextField(
+                  controller: entry.value,
+                  decoration: InputDecoration(
+                    labelText: entry.key.capitalize(),
+                    labelStyle: charaTextStyle(),
+                    hoverColor: itemHoverColor,
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: itemBorderColor),
+                    ),
+                  ),
+                  keyboardType: entry.key == 'name' ? TextInputType.text : TextInputType.number, style: charaTextStyle(),
+                );
+              }),
+              const SizedBox(height: 16.0),
+              ItemTypeDropdown(
+                selectedItemType: _selectedItemType,
+                onChanged: (ItemType? newValue) {
+                  setState(() {
+                    _selectedItemType = newValue!;
+                  });
+                },
+              ),
+              const SizedBox(height: 16.0),
+              ElevatedButton(
+                style: charaButtonStyle(),
+                onPressed: addItem,
+                child: const Text('Add Item'),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+  
+  Future<bool> assetExists(String assetPath) async {
+    try {
+      await rootBundle.load(assetPath);
+      return true;
+    } catch (e) {
+      return false; 
+    }
+  }
 
   Future<void> addItem() async {
+    String imagePath = 'assets/item_img/${_controllers['name']!.text}.jpg';
+    bool imageExists = await assetExists(imagePath);
+    if(imageExists == false) {
+      imagePath = 'assets/item_img/empty_slot.jpg';
+    }
+
     try {
       Item newItem = Item(
         name: _controllers['name']!.text,
@@ -90,7 +115,10 @@ class _AddItemPageState extends State<AddItemPage> {
         hitRating: int.parse(_controllers['hitRating']!.text),
         mastery: int.parse(_controllers['mastery']!.text),
         type: _selectedItemType.name, 
-        imageUrl: 'assets/item_img/${_controllers['name']!.text}.jpg',
+        imageUrl: imagePath,
+        expertiseRating: int.parse(_controllers['expertiseRating']!.text),
+        strength: int.parse(_controllers['strength']!.text),
+        agility: int.parse(_controllers['agility']!.text),
       );
 
       await itemService.addItem(newItem);
