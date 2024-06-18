@@ -38,3 +38,9 @@ Color? characterDropdown = Colors.grey[800];
 Color  charaButtonColor = Colors.white;
 Color  charaButtonTextColor = Colors.black;
 Color? charaTileColor = Colors.grey[800];
+Color  charaBorderColor = Colors.white;
+Color  charaHoverColor = Colors.white;
+
+//item
+Color itemHoverColor = Colors.white;
+Color itemBorderColor = Colors.white;

@@ -56,6 +56,7 @@ TextStyle charaTextStyle() {
   );
 }
 
+
 ButtonStyle charaButtonStyle() {
   return ElevatedButton.styleFrom(
     foregroundColor: charaButtonTextColor,

@@ -94,7 +94,7 @@ class _ViewCharacterItemsPageState extends State<ViewCharacterItemsPage> {
   }
 
   Future<double> calculateDPS() {
-    return SimulationEngine.runSimulation(_updatedCharacter.classType);
+    return SimulationEngine.runSimulation(_updatedCharacter);
   }
 
  Widget _buildEquipmentDropdown(ItemType itemType) {

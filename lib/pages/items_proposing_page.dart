@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:wow_stats_ds/models/character.dart';
 import 'package:wow_stats_ds/models/extensions/colors.dart';
+import 'package:wow_stats_ds/models/extensions/item_utils.dart';
 import 'package:wow_stats_ds/models/extensions/styles.dart';
 import 'package:wow_stats_ds/models/item.dart';
 import 'package:wow_stats_ds/pages/auth_page_login.dart';
 import 'package:wow_stats_ds/service/auth_service.dart';
 import 'package:wow_stats_ds/service/character_service.dart';
+import 'package:wow_stats_ds/service/item_service.dart';
 import 'package:wow_stats_ds/widgets/appbar_widget.dart';
+import 'package:wow_stats_ds/widgets/build_item_show_widget.dart';
 
 class ItemsProposingPage extends StatefulWidget {
   const ItemsProposingPage({super.key});
@@ -17,6 +20,7 @@ class ItemsProposingPage extends StatefulWidget {
 
 class _ItemsProposingPageState extends State<ItemsProposingPage> {
   final CharacterService _characterService = CharacterService();
+  final ItemService _itemService = ItemService();
   final AuthService _authService = AuthService();
   Character? _selectedCharacter;
   late Stream<List<Item>> _selectedCharacterItems;
@@ -95,16 +99,22 @@ class _ItemsProposingPageState extends State<ItemsProposingPage> {
                         } else {
                           final items = snapshot.data!;
                            return GridView.builder(
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 mainAxisSpacing: 0, 
                                 crossAxisSpacing: 5, 
-                                childAspectRatio: 10,
+                                childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 5),
                               ),
                               itemCount: items.length,
                               itemBuilder: (context, index) {
-                                return _buildItemWidget(items[index]);
-                              },
+                              return BuildItemWidget(
+                                item: items[index],
+                                index: index,
+                                onTap: (item, index) {
+                                  showItemDialog(context, item, index, _itemService, _selectedCharacter!);
+                                },
+                              );
+                            },
                             );
                         }
                       },
@@ -118,35 +128,4 @@ class _ItemsProposingPageState extends State<ItemsProposingPage> {
       ),
     );
   }
-
-Widget _buildItemWidget(Item item) {
-  return Column(
-    children: [
-      SizedBox(
-        height: 64,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.network(
-              item.imageUrl,
-              height: 64,
-              width: 64,
-              errorBuilder: (context, error, stackTrace) {
-                return Image.asset(
-                  'assets/item_img/empty_slot.jpg',
-                  height: 64,
-                  width: 64,
-                );
-              },
-            ),
-            Text(
-              item.name,
-              style: charaTextStyle(),
-            ),
-          ],
-        ),
-      ),
-    ],
-  );
-}
 }

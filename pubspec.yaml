@@ -57,12 +57,15 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/item_img/Crown_Of_The_Twilight_Queen.jpg
+    - assets/item_img/Crown Of The Twilight Queen.jpg
     - assets/item_img/Ice Crown Necklace.jpg
     - assets/spellbook.png
     - assets/ability_img/
     - assets/item_img/Planetary Amulet.jpg
     - assets/item_img/empty_slot.jpg
+    - assets/item_img/FireLord's Hood.jpg
+    - assets/item_img/Lightweight Bio-Optic Killshades.jpg
+    - assets/item_img/TEST.jpg
 
   #   - images/a_dot_ham.jpeg
 

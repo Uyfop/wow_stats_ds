@@ -6,23 +6,36 @@ class AbilityManager {
   final AbilityService _abilityService = AbilityService();
 
   Future<void> addAbilities() async {
-    final ability1 = Ability(
+    final mightStrike = Ability(
       name: 'Mighty Strike',
       dps: 100,
       cooldown: 10,
+      castTime: 0,
       description: 'A powerful strike that deals massive damage.',
       classType: CharacterClass.warrior,
     );
 
-    final ability2 = Ability(
+    final fireBall = Ability(
       name: 'Fireball',
       dps: 120,
-      cooldown: 8,
+      cooldown: 2.5,
+      castTime: 2.5,
       description: 'Launches a fiery projectile at the target.',
       classType: CharacterClass.mage,
     );
-    await addAbilityIfNotExists(ability1);
-    await addAbilityIfNotExists(ability2);
+
+    final pyroBlast = Ability(
+      name: 'Pyroblast',
+      dps: 200,
+      cooldown: 3,
+      castTime: 3,
+      description: 'A massive fireball that deals massive damage.',
+      classType: CharacterClass.mage,
+    );
+
+    await addAbilityIfNotExists(mightStrike);
+    await addAbilityIfNotExists(fireBall);
+    await addAbilityIfNotExists(pyroBlast);
   }
 
   Future<void> addAbilityIfNotExists(Ability ability) async {

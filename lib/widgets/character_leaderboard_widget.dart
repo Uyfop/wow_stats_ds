@@ -10,7 +10,7 @@ class CharacterLeaderBoardWidget extends StatelessWidget {
   CharacterLeaderBoardWidget({super.key});
 
   Future<double> _calculateDPS(Character character) async{
-    return await SimulationEngine.runSimulation(character.classType);
+    return await SimulationEngine.runSimulation(character);
   }
 
   Future<List<Map<String, dynamic>>> _getSortedCharactersWithDPS() async {
