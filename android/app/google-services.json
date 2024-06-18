@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "853568610093",
+    "project_id": "wowstatsds",
+    "storage_bucket": "wowstatsds.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853568610093:android:621d9944e1d645290cbda4",
+        "android_client_info": {
+          "package_name": "com.example.wow_stats_ds"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWQAjtXC0KzZuf0vaHH0Lmsf2MXSrf3qs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
