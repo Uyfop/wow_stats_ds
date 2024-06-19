@@ -31,6 +31,7 @@ class RogueSimulationData extends SimulationData {
     'mastery': 0,
     'critRating': 2,
     'agility': 3,
+    'expertiseRating': 1,
   };
   @override
   Map<String, int> calculateDPSIncrease(List<Item> items, Item currentItem) {

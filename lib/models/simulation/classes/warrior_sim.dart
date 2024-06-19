@@ -31,7 +31,8 @@ class WarriorSimulationData extends SimulationData {
     'mastery': 0,
     'critRating': 0,
     'agility': 0,
-  };
+    'expertiseRating': 1,
+  };  
   
   @override
   Map<String, int> calculateDPSIncrease(List<Item> items, Item currentItem) {

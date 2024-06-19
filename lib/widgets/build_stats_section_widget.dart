@@ -1,6 +1,7 @@
   import 'package:flutter/material.dart';
 import 'package:wow_stats_ds/models/character.dart';
 import 'package:wow_stats_ds/models/extensions/character_utils.dart';
+import 'package:wow_stats_ds/models/extensions/styles.dart';
 
 Widget buildStatsSection(Character updatedCharacter, BuildContext context) {
     return Padding(
@@ -10,12 +11,12 @@ Widget buildStatsSection(Character updatedCharacter, BuildContext context) {
         children: [
           Text(
             'Stats:',
-            style: Theme.of(context).textTheme.headlineSmall,
+            style: charaTextStyle(), 
           ),
           const SizedBox(height: 8.0),
           Text(
             generateStatsText(updatedCharacter),
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: charaTextStyle(),
           ),
         ],
       ),

@@ -4,17 +4,64 @@ import 'package:wow_stats_ds/models/item.dart';
 
 String generateStatsText(Character updatedCharacter) {
   final stats = updatedCharacter.getStats();
-  return 
-  '''
-    Intellect: ${stats['intellect']}
-    Stamina: ${stats['stamina']}
-    Spirit: ${stats['spirit']}
-    Critical Strike Chance amount: ${stats['criticalStrikeChance']} 
-    Critical Strike Chance: ${(stats['criticalStrikeChance']! / 179.34).toStringAsFixed(2)}%
-    Haste Rating: ${stats['hasteRating']}
-    Hit Rating: ${stats['hitRating']}
-    Mastery: ${stats['mastery']}
-  ''';
+  double critChance = 0;
+  String statsText = '';
+
+    if(stats['intellect'] != 0) {
+      statsText += 'Intellect: ${stats['intellect']}\n';
+    }
+
+    if(stats['strength'] != 0) {
+      statsText += 'Strength: ${stats['strength']}\n';
+    }
+
+    if(stats['agility'] != 0) {
+      statsText += 'Agility: ${stats['agility']}\n';
+    }
+
+    if(stats['stamina'] != 0) {
+      statsText += 'Stamina: ${stats['stamina']}\n';
+    }
+
+    if(stats['spirit'] != 0) {
+      statsText += 'Spirit: ${stats['spirit']}\n';
+    }
+
+    if(stats['criticalStrikeChance'] != 0){
+      statsText += 'Critical Strike Rating: ${stats['criticalStrikeChance']}\n';
+      critChance = stats['criticalStrikeChance']! / 179.34;
+    }
+
+    if(updatedCharacter.classType.name == 'mage' || updatedCharacter.classType.name == 'warlock' || updatedCharacter.classType.name == 'priest') {
+      critChance += stats['intellect']!/648;
+    }
+
+    if (critChance != 0){
+      statsText += 'Critical Strike Chance: ${critChance.toStringAsFixed(2)}%\n';
+    }
+
+    if (stats['expertiseRating'] != 0) {
+      statsText += 'Expertise Rating: ${stats['expertiseRating']}\n';
+    }
+
+    // if(updatedCharacter.classType.name == 'Mage') {
+    //   statsText += 'Spell Power: ${stats['spellPower']}\n';
+    // }
+
+    if(stats['hasteRating'] != 0) {
+      statsText += 'Haste Rating: ${stats['hasteRating']}\n';
+    }
+
+    if(stats['hitRating'] != 0) {
+      statsText += 'Hit Rating: ${stats['hitRating']}\n';
+    }
+
+    if(stats['mastery'] != 0) {
+      statsText += 'Mastery: ${stats['mastery']}\n';
+    }
+
+
+  return statsText;
 }
 
 Item? getItemForSlot(ItemType itemType, Character updatedCharacter) {

@@ -11,6 +11,7 @@ import 'package:wow_stats_ds/models/simulation/simulation_engine.dart';
 import 'package:wow_stats_ds/pages/view_character_abilities_page.dart';
 import 'package:wow_stats_ds/service/character_service.dart';
 import 'package:wow_stats_ds/service/item_service.dart';
+import 'package:wow_stats_ds/widgets/appbar_widget.dart';
 import 'package:wow_stats_ds/widgets/build_stats_section_widget.dart';
 
 class ViewCharacterItemsPage extends StatefulWidget {
@@ -36,16 +37,23 @@ class _ViewCharacterItemsPageState extends State<ViewCharacterItemsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Character: ${_updatedCharacter.name}, Class: ${_updatedCharacter.classType.name}'),
-      ),
+      appBar: const CustomAppBar(),
+      backgroundColor: siteBackgroundColor,
       body: ListView(
         children: [
+          Text(
+            'Character: ${_updatedCharacter.name}, Class: ${_updatedCharacter.classType.name}',
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: Colors.white,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: [ 
                 Expanded(
                   child: buildStatsSection(_updatedCharacter, context)
                 ),
@@ -129,7 +137,7 @@ class _ViewCharacterItemsPageState extends State<ViewCharacterItemsPage> {
                             return const Icon(Icons.image);
                           },
                         ),
-                        Text(text),
+                        Text(text, style: charaTextStyle()),
                     ],
                   ),
                 ),

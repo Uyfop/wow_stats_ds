@@ -39,13 +39,13 @@ class LeaderBoardPage extends StatelessWidget {
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                      
-                   SizedBox(width: 140),
+                  SizedBox(width: 150),
                   Text(
                       "Name",
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                   
-                  SizedBox(width: 130),
+                  SizedBox(width: 120),
                   Text(
                       "DPS",  
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
