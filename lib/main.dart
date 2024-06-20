@@ -28,10 +28,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'wow_stats_ds',
       debugShowCheckedModeBanner: false,
-      home: AuthPageLogin(),
+      home: const AuthPageLogin(),
       initialRoute: '/login',
       routes: {
-        '/login': (context) => AuthPageLogin(),
+        '/login': (context) => const AuthPageLogin(),
       },
     );
   }

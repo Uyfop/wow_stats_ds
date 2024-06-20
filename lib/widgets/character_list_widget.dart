@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wow_stats_ds/models/character.dart';
+import 'package:wow_stats_ds/models/extensions/character_utils.dart';
 import 'package:wow_stats_ds/models/extensions/colors.dart';
 import 'package:wow_stats_ds/pages/auth_page_login.dart';
 import 'package:wow_stats_ds/pages/view_character_items_page.dart';
@@ -48,11 +49,16 @@ class CharacterListWidget extends StatelessWidget {
                   tileColor: homePageTileColor,
                   hoverColor: homePageHoverColor,
                   textColor: homePageTextColor,
-                 title: Padding(
+                  title: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0), 
                     child: Text(character.name),
                   ),
-
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.white),
+                    onPressed: () {
+                      deleteCharacterUtil(context, character.name, _characterService);
+                    },
+                  ),
                   onTap: () {
                      Navigator.push(
                       context,

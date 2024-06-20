@@ -6,8 +6,8 @@ class AbilityManager {
   final AbilityService _abilityService = AbilityService();
 
   Future<void> addAbilities() async {
-    final mightStrike = Ability(
-      name: 'Mighty Strike',
+    final mortalStrike = Ability(
+      name: 'Mortalstrike',
       dps: 100,
       cooldown: 10,
       castTime: 0,
@@ -33,7 +33,7 @@ class AbilityManager {
       classType: CharacterClass.mage,
     );
 
-    await addAbilityIfNotExists(mightStrike);
+    await addAbilityIfNotExists(mortalStrike);
     await addAbilityIfNotExists(fireBall);
     await addAbilityIfNotExists(pyroBlast);
   }

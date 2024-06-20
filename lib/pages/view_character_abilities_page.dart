@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:wow_stats_ds/models/character.dart';
 import 'package:wow_stats_ds/models/ability.dart';
+import 'package:wow_stats_ds/models/extensions/colors.dart';
 import 'package:wow_stats_ds/models/extensions/string_extension.dart';
+import 'package:wow_stats_ds/models/extensions/styles.dart';
 import 'package:wow_stats_ds/service/ability_service.dart';
+import 'package:wow_stats_ds/widgets/appbar_widget.dart';
 
 class AbilitiesPage extends StatefulWidget {
   final Character character;
@@ -30,9 +33,8 @@ class _AbilitiesPageState extends State<AbilitiesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('${widget.character.name} Abilities'),
-      ),
+      appBar: const CustomAppBar(),
+      backgroundColor: siteBackgroundColor,
       body: FutureBuilder<List<Ability>>(
         future: _abilitiesFuture,
         builder: (context, snapshot) {
@@ -53,14 +55,14 @@ class _AbilitiesPageState extends State<AbilitiesPage> {
                     height: 48,
                     fit: BoxFit.cover,
                   ),
-                  title: Text(ability.name),
-                  subtitle: Text(ability.description),
+                  title: Text(ability.name, style: charaTextStyle()),
+                  subtitle: Text(ability.description, style: charaTextStyle()),
                   trailing: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('${ability.dps} DPS'),
-                      Text('${ability.cooldown} Cooldown'),
+                      Text('${ability.dps} DPS', style: charaTextStyle()),
+                      Text('${ability.cooldown} Cooldown', style: charaTextStyle()),
                     ],
                   ),
                 );

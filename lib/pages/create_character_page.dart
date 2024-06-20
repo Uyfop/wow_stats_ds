@@ -110,7 +110,7 @@ class _CreateCharacterPageState extends State<CreateCharacterPage> {
           content: Text('User not authenticated. Please log in.'),
         ),
       );
-      Navigator.push(context, MaterialPageRoute(builder: (context) => AuthPageLogin()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const AuthPageLogin()));
       return;
     }
 

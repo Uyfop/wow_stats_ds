@@ -64,4 +64,8 @@ class CharacterService {
       return snapshot.docs.map((doc) => Character.fromJson(doc.data())).toList();
     });
   }
+
+   Future<void> deleteCharacter(String docId) async {
+    await _firestore.collection('characters').doc(docId).delete();
+  }
 }

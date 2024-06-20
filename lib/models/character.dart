@@ -53,28 +53,28 @@ class Character {
 
   Map<String, dynamic> toJson() {
     return {
-      'name': name,
-      'userId': userId,
-      'head': head?.toJson(),
-      'neck': neck?.toJson(),
-      'shoulder': shoulder?.toJson(),
-      'back': back?.toJson(),
-      'chest': chest?.toJson(),
-      'wrist': wrist?.toJson(),
-      'hands': hands?.toJson(),
-      'waist': waist?.toJson(),
-      'legs': legs?.toJson(),
-      'feet': feet?.toJson(),
-      'finger1': finger1?.toJson(),
-      'finger2': finger2?.toJson(),
-      'trinket1': trinket1?.toJson(),
-      'trinket2': trinket2?.toJson(),
-      'mainHand': mainHand?.toJson(),
-      'offHand': offHand?.toJson(),
-      'ranged': ranged?.toJson(),
-      'classType': classType.name,
-    };
-  }
+    'name': name,
+    'userId': userId,
+    'head': head != null ? head!.toJson() : Item.empty(ItemType.head).toJson(),
+    'neck': neck != null ? neck!.toJson() : Item.empty(ItemType.neck).toJson(),
+    'shoulder': shoulder != null ? shoulder!.toJson() : Item.empty(ItemType.shoulder).toJson(),
+    'back': back != null ? back!.toJson() : Item.empty(ItemType.back).toJson(),
+    'chest': chest != null ? chest!.toJson() : Item.empty(ItemType.chest).toJson(),
+    'wrist': wrist != null ? wrist!.toJson() : Item.empty(ItemType.wrist).toJson(),
+    'hands': hands != null ? hands!.toJson() : Item.empty(ItemType.hands).toJson(),
+    'waist': waist != null ? waist!.toJson() : Item.empty(ItemType.waist).toJson(),
+    'legs': legs != null ? legs!.toJson() : Item.empty(ItemType.legs).toJson(),
+    'feet': feet != null ? feet!.toJson() : Item.empty(ItemType.feet).toJson(),
+    'finger1': finger1 != null ? finger1!.toJson() : Item.empty(ItemType.finger1).toJson(),
+    'finger2': finger2 != null ? finger2!.toJson() : Item.empty(ItemType.finger2).toJson(),
+    'trinket1': trinket1 != null ? trinket1!.toJson() : Item.empty(ItemType.trinket1).toJson(),
+    'trinket2': trinket2 != null ? trinket2!.toJson() : Item.empty(ItemType.trinket2).toJson(),
+    'mainHand': mainHand != null ? mainHand!.toJson() : Item.empty(ItemType.mainHand).toJson(),
+    'offHand': offHand != null ? offHand!.toJson() : Item.empty(ItemType.offHand).toJson(),
+    'ranged': ranged != null ? ranged!.toJson() : Item.empty(ItemType.ranged).toJson(),
+    'classType': classType.name,
+  };
+}
 
  factory Character.fromJson(Map<String, dynamic> json) {
   return Character(
@@ -107,6 +107,9 @@ class Character {
       'stamina': 0,
       'spirit': 0,
       'criticalStrikeChance': 0,
+      'strength': 0,
+      'agility': 0,
+      'expertiseRating': 0,
       'hasteRating': 0,
       'hitRating': 0,
       'mastery': 0,
@@ -138,6 +141,9 @@ class Character {
         stats['stamina'] = stats['stamina']! + item.stamina;
         stats['spirit'] = stats['spirit']! + item.spirit;
         stats['criticalStrikeChance'] = stats['criticalStrikeChance']! + item.criticalStrikeChance;
+        stats['strength'] = stats['strength']! + item.strength;
+        stats['agility'] = stats['agility']! + item.agility;
+        stats['expertiseRating'] = stats['expertiseRating']! + item.expertiseRating;
         stats['hasteRating'] = stats['hasteRating']! + item.hasteRating;
         stats['hitRating'] = stats['hitRating']! + item.hitRating;
         stats['mastery'] = stats['mastery']! + item.mastery;

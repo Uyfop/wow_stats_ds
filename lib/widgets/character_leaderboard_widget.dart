@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wow_stats_ds/models/character.dart';
 import 'package:wow_stats_ds/models/extensions/colors.dart';
+import 'package:wow_stats_ds/models/extensions/styles.dart';
 import 'package:wow_stats_ds/models/simulation/simulation_engine.dart';
+import 'package:wow_stats_ds/pages/leaderboard_page_itemcheck.dart';
 import 'package:wow_stats_ds/service/character_service.dart';
 
 class CharacterLeaderBoardWidget extends StatelessWidget {
@@ -58,7 +60,23 @@ class CharacterLeaderBoardWidget extends StatelessWidget {
                       child: Text((index + 1).toString()),
                     ),
                     Expanded(
-                      child: Text(character.name),
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LeaderBoardPageItem(character: character),
+                            ),
+                          );
+                        },
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            character.name,
+                            style: charaTextStyle(),
+                          ),
+                        ),
+                      ),
                     ),
                     Expanded(
                       child: Text(dps.toStringAsFixed(0)),
