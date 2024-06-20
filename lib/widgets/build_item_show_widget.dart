@@ -8,7 +8,7 @@ class BuildItemWidget extends StatelessWidget {
   final int index;
   final Function(Item, int) onTap;
 
-  BuildItemWidget({
+  const BuildItemWidget({
     super.key, 
     required this.item,
     required this.index,

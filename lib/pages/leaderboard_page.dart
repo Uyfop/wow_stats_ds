@@ -5,7 +5,7 @@ import 'package:wow_stats_ds/widgets/character_leaderboard_widget.dart';
 
 
 class LeaderBoardPage extends StatelessWidget {
-  LeaderBoardPage({super.key});
+  const LeaderBoardPage({super.key});
 
   @override
   Widget build(BuildContext context) {

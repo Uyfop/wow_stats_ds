@@ -27,7 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => ItemsProposingPage()),
+              MaterialPageRoute(builder: (context) => const ItemsProposingPage()),
             );
           }
         ),
@@ -48,7 +48,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           icon: Icons.leaderboard,
           onPressed: () => Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => LeaderBoardPage()),
+            MaterialPageRoute(builder: (context) => const LeaderBoardPage()),
           ),
         ),
         const SizedBox(width: 12.0),
